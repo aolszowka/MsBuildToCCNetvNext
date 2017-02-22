@@ -94,6 +94,7 @@ namespace MsBuildToCCNetvNext
             var rootNodeAttributes =
                 new XAttribute[]
                 {
+                    new XAttribute("project_count", this.projects.Values.Count),
                     new XAttribute("warning_count", errorAndWarningCount.Item2),
                     new XAttribute("error_count", errorAndWarningCount.Item1)
                 };
