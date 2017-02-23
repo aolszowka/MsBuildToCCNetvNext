@@ -22,6 +22,6 @@ The work flow is as follows:
 
 Kept from the original design is the fact that the entire build log is stored in memory until Shutdown is called. Again the jury is still out on how much of a hit that takes with a particularly chatty log. However the design remains the same as it was before in that aspect so we wouldn't expect much of a hit.
 
-Another slight difference in the design is the utilization of the XDocument API (which was unavailable at the time of initial writing). This API (at least in this authors opinion) is much clearer/cleaner than the XmlWriter API, however none of this has been perf tested.
+Another slight difference in the design is the utilization of the XDocument API (which was unavailable at the time of initial writing). This API (at least in this authors opinion) is much clearer/cleaner than the XmlWriter API, however none of this has been perf tested. Because of a switch to this API the XML Serialization of elements was localized to each object which seemed to better suit the design and felt much cleaner.
 
-Because of a switch to this API the XML Serialization of elements was localized to each object which seemed to better suit the design and felt much cleaner.
+Yet another slight difference is that this logger will log errors AND warnings in the situation where there is an error logged. This was thought to be the better solution, instead focusing the filtering of the warnings as the user desires in the XLS Transform.
