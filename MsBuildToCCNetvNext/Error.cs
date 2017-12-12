@@ -33,7 +33,7 @@ namespace MsBuildToCCNetvNext
                 var attributes = new List<XAttribute>();
 
                 attributes.Add(new XAttribute("code", this.Code));
-                attributes.Add(new XAttribute("message", this.Text));
+                attributes.Add(new XAttribute("message", Utilities.SanitizeMessageForXml(this.Text)));
 
                 // If we're given a file we need to split this up into
                 // usable pieces like the original MsBuildToCCNet does

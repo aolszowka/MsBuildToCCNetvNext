@@ -4,6 +4,7 @@
 
 namespace MsBuildToCCNetvNext
 {
+    using System;
     using System.Xml.Linq;
     using Microsoft.Build.Framework;
 
@@ -18,6 +19,11 @@ namespace MsBuildToCCNetvNext
         /// <param name="e">The <see cref="BuildMessageEventArgs"/> to wrap.</param>
         public Message(BuildMessageEventArgs e)
         {
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             this.Text = e.Message;
             this.Importance = e.Importance;
         }
@@ -47,7 +53,7 @@ namespace MsBuildToCCNetvNext
         {
             get
             {
-                return new XElement("message", new XAttribute("importance", this.Importance), this.Text);
+                return new XElement("message", new XAttribute("importance", this.Importance), Utilities.SanitizeMessageForXml(this.Text));
             }
         }
     }
